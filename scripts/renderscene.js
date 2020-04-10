@@ -199,8 +199,28 @@ function LoadNewScene() {
                                                           scene.models[i].vertices[j][2],
                                                           1);
                 }
-            }
-            else {
+            } else if (scene.models[i].type === 'cube') {
+                var center = scene.models[i].center;
+                var width = scene.models[i].width;
+                var height = scene.models[i].height;
+                var depth = scene.models[i].depth;
+                scene.models[i].vertices =[];
+                scene.models[i].vertices.push(Vector4(center[0] - width/2, center[1] - height/2, center[2] + depth/2, 1)); // bottom front left
+                scene.models[i].vertices.push(Vector4(center[0] + width/2, center[1] - height/2, center[2] + depth/2, 1)); // bottom front right
+                scene.models[i].vertices.push(Vector4(center[0] + width/2, center[1] - height/2, center[2] - depth/2, 1)); // bottom back right
+                scene.models[i].vertices.push(Vector4(center[0] - width/2, center[1] - height/2, center[2] - depth/2, 1)); // bottom back left
+                scene.models[i].vertices.push(Vector4(center[0] - width/2, center[1] + height/2, center[2] + depth/2, 1)); // top front left
+                scene.models[i].vertices.push(Vector4(center[0] + width/2, center[1] + height/2, center[2] + depth/2, 1)); // top front right
+                scene.models[i].vertices.push(Vector4(center[0] + width/2, center[1] + height/2, center[2] - depth/2, 1)); // top back right
+                scene.models[i].vertices.push(Vector4(center[0] - width/2, center[1] + height/2, center[2] - depth/2, 1)); // top back left
+                scene.models[i].edges =[];
+                scene.models[i].edges.push([0, 1, 2, 3, 0]);
+                scene.models[i].edges.push([4, 5, 6, 7, 4]);
+                scene.models[i].edges.push([0, 4]);
+                scene.models[i].edges.push([1, 5]);
+                scene.models[i].edges.push([2, 6]);
+                scene.models[i].edges.push([3, 7]);
+            } else {
                 scene.models[i].center = Vector4(scene.models[i].center[0],
                                                  scene.models[i].center[1],
                                                  scene.models[i].center[2],
