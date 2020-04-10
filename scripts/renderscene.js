@@ -110,6 +110,8 @@ function Animate(timestamp) {
     // step 4: request next animation frame (recursively calling same function)
 
 
+    ctx.clearRect(0, 0, view.width, view.height);
+
     var time = timestamp - start_time;
 
     // ... step 2
